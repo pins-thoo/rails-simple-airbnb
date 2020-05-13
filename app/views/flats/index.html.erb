@@ -1,30 +1,37 @@
-<div class="container">
+<div class="container mt-3">
   <div class="row">
-    <h1>All our Flats (<%= Flat.count %>)</h1>
+    <div class="col-12">
+      <h1>All our Flats</h1>
+    </div>
   </div>
 
-    <div class="row">
-      <% @flats.each do |flat| %>
-        <div class="col-4">
-          <div class="flat-card">
-            <img class="flat-card-image" src="https://source.unsplash.com/random/1150x600" alt="Card image cap">
-            <div class="flat-card-content">
-              <h5 class="flat-card-title"><%= flat.name %></h5>
-              <p class="card-text"><%= flat.address %></p>
-              <div class="flex">
-                <div class="flex"><p><%= flat.number_of_guests %></p></div>
-                <div class="flex ml-3"><p>£<%= flat.price_per_night %></p></div>
+  <div class="row">
+    <div class="col">
+        <p>All <%=@flats.length%> flats.</p>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3">
+      <%@flats.each do |flat|%>
+          <div class="col mb-4">
+            <div class="card h-100">
+              <img src="https://source.unsplash.com/featured?home" class="card-img-top" alt="...">
+              <div class="card-body bg-light align-items-center">
+                <h3 class="card-title"><%=flat.name%></h3>
+                <p class="card-text"><%=flat.address%></p>
+                <div class="card-text-align">
+                  <i class="fas fa-user-friends pr-2"><span class="mb-4"><%=flat.number_of_guests%></span></i>
+                  <i class="fas fa-euro-sign ml-2"><%=flat.price_per_night%></i>
+                </div>
+              </div>
+              <div class="card-footer">
+                <a href="/flats/<%=flat.id%>" class="card-link">More info</a>
+                <a class="ml-3 text-warning card-link" href="/flats/<%=flat.id%>/edit">Edit</a>
+                <a data-confirm="Are you sure?" class="ml-3 text-danger card-link" rel="nofollow" data-method="delete" href="/flats/<%=flat.id%>">Remove</a>
               </div>
             </div>
-            <div class="flat-card-actions">
-              <a href="#" class="">Card link</a>
-              <a href="#" class="">Another link</a>
-            </div>
           </div>
-        </div>
       <% end %>
-    </div>
-
+  </div>
 </div>
-
 
